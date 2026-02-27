@@ -62,24 +62,30 @@ public class Piece {
     //going to score any points.
     public ArrayList<Square> getLegalMoves(Board b, Square start){
         ArrayList<Square> moves = new ArrayList<Square>();
-         Square right = b.getSquareArray()[start.getRow()][start.getCol()+1];
-        if(start.getCol()+1 < 8){
-            //determine the row so I can know how much 
-                if(right.getOccupyingPiece().getColor()!= color){
-                    
-                }
-                moves.add(b.getSquareArray()[start.getRow()+1][start.getCol()+1]);
-            }
-        if(start.getCol()-1 > 0){
-            
-        }
-        /*if(start.getCol() < 7){
+    
+        
             Square right = b.getSquareArray()[start.getRow()][start.getCol()+1];
-
+            //determine the row so I can know how much 
+            int shift = start.getCol()+1;
+            for(int i = start.getRow(); i < 8; i++){
+                //check for in bounds first
+                if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                    moves.add(right);
+                }
+                moves.add(b.getSquareArray()[start.getRow()+i][shift]);
             
-        }*/
+            }
+        
+            for(int i = start.getRow(); i > 0; i--){
+                if(right.getOccupyingPiece().getColor()!= color){
+                    moves.add(right);
+                }
+                moves.add(b.getSquareArray()[start.getRow()-i][shift]);
+            
+            }
+        
         // ret.add(right);
     	return moves;
-    }
+    
         return null;
-}
+}}
