@@ -122,9 +122,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         if (imageUrl != null) {
             // This is the cleanest way to get an AWT Image object from a URL
             backgroundImage = Toolkit.getDefaultToolkit().createImage(imageUrl);
-        } else {
-            System.err.println("Image resource not found. Check path: /src/main/java/com/example/Pictures/");
-        }
+        } 
 
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
@@ -132,7 +130,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 if (sq == fromMoveSquare)
                     sq.setBorder(BorderFactory.createLineBorder(Color.blue));
                 sq.paintComponent(g);
-                System.out.println("Painting square at " + x + ", " + y);
+                // System.out.println("Painting square at " + x + ", " + y);
 
             }
         }
@@ -155,6 +153,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         if (sq.isOccupied()) {
             currPiece = sq.getOccupyingPiece();
             fromMoveSquare = sq;
+            for(Square s: currPiece.getLegalMoves(this, fromMoveSquare)){
+                s.setBorder(BorderFactory.createLineBorder(Color.MAGENTA)));
+            }
             if (currPiece.getColor() != whiteTurn)
                 return;
             sq.setDisplay(false);
@@ -179,7 +180,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
             }
             fromMoveSquare.setDisplay(true);
         }
-
+        for(Square[] row: board){
+            s.setBorder(null);
+        }
         
         currPiece = null;
         repaint();
