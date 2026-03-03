@@ -64,24 +64,24 @@ public class Piece {
         ArrayList<Square> moves = new ArrayList<Square>();
     
         
-            Square right = b.getSquareArray()[start.getRow()][start.getCol()+1];
+            // Square right = b.getSquareArray()[start.getRow()][start.getCol()+1];
             //determine the row so I can know how much 
             // int shift = start.getCol()+1;
             for(int i = start.getRow(); i < 8; i++){
                 //check for in bounds first
                 if(start.getCol()+1 < 8){
-                    if(start.getRow()+1 < 7){
+                    if(start.getRow()+i <= 7){
                         moves.add(b.getSquareArray()[start.getRow()+i][start.getCol()+1]);
                     }
-                    if(start.getRow()-1 >= 0){
+                    if(start.getRow()-i >= 0){
                         moves.add(b.getSquareArray()[start.getRow()-i][start.getCol()+1]);
                     }
                 }
                 if(start.getCol() > 0){
-                    if(start.getRow()+1 < 7){
+                    if(start.getRow()+i <= 7){
                         moves.add(b.getSquareArray()[start.getRow()+i][start.getCol()-1]);
                     }
-                    if(start.getRow()-1 >= 0){
+                    if(start.getRow()-i >= 0){
                         moves.add(b.getSquareArray()[start.getRow()-i][start.getCol()-1]);
                     }
                 }
