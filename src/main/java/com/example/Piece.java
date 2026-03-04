@@ -50,7 +50,24 @@ public class Piece {
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
-     return null;
+        ArrayList<Square> captures = new ArrayList<Square>();
+        if(start.getRow()+1 < 8){
+            // add the space in front of us to the capture list
+            captures.add(board[start.getRow()+1][start.getCol()]);
+        }
+        if(start.getRow()-1 > 0){
+            //add the space behind us to the capture list
+            captures.add(board[start.getRow()-1][start.getCol()]);
+        }
+        if(start.getCol()+1 < 8){
+            //add the space to the right of us to the capture list
+            captures.add(board[start.getRow()][start.getCol()+1]);
+        }
+        if(start.getCol()-1 > 0){
+            //add the space to the left of us to the capture list
+            captures.add(board[start.getRow()][start.getCol()-1]);
+        }
+     return captures;
     }
     
 
@@ -62,15 +79,6 @@ public class Piece {
     //going to score any points.
     public ArrayList<Square> getLegalMoves(Board b, Square start){
         ArrayList<Square> moves = new ArrayList<Square>();
-    
-        
-            // Square right = b.getSquareArray()[start.getRow()][start.getCol()+1];
-            //determine the row so I can know how much 
-            // if(start.getCol()+1 < 8){
-            //     moves.add(b.getSquareArray()[start.getRow()][start.getCol()+1]);
-            // }
-             
-            // attempt 1
                 //check for in bounds first
                 if(start.getCol()+1 < 8){
                     for(int row = start.getRow()+1; row < 8; row++){
@@ -95,8 +103,6 @@ public class Piece {
                     
                 }
 
-
-
                  if(start.getCol()-1 >= 0){
                     for(int row = start.getRow()+1; row < 8; row++){
                         Square right = b.getSquareArray()[row][start.getCol()-1];
@@ -120,13 +126,5 @@ public class Piece {
                     
                 }
                 
-                // if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
-                    // moves.add(right);
-                // }
-                // moves.add(b.getSquareArray()[start.getRow()+i][start.getCol()]);
-            
-            
-        
-        // ret.add(right);
     	return moves;
 }}
