@@ -66,31 +66,27 @@ public class Piece {
         
             // Square right = b.getSquareArray()[start.getRow()][start.getCol()+1];
             //determine the row so I can know how much 
-            // int shift = start.getCol()+1;
-            for(int i = start.getRow(); i < 8; i++){
+            // if(start.getCol()+1 < 8){
+            //     moves.add(b.getSquareArray()[start.getRow()][start.getCol()+1]);
+            // }
+             
+            // attempt 1
                 //check for in bounds first
                 if(start.getCol()+1 < 8){
-                    if(start.getRow()+i <= 7){
-                        moves.add(b.getSquareArray()[start.getRow()+i][start.getCol()+1]);
+                    for(int row = start.getRow()+1; row < 8; row++){
+                        moves.add(b.getSquareArray()[row][start.getCol()+1]);
                     }
-                    if(start.getRow()-i >= 0){
-                        moves.add(b.getSquareArray()[start.getRow()-i][start.getCol()+1]);
-                    }
-                }
-                if(start.getCol() > 0){
-                    if(start.getRow()+i <= 7){
-                        moves.add(b.getSquareArray()[start.getRow()+i][start.getCol()-1]);
-                    }
-                    if(start.getRow()-i >= 0){
-                        moves.add(b.getSquareArray()[start.getRow()-i][start.getCol()-1]);
+                    for(int row = start.getRow()-1;row >= 0; row--){
+                        moves.add(b.getSquareArray()[row][start.getCol()+1]);
                     }
                 }
+                
                 // if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
                     // moves.add(right);
                 // }
                 // moves.add(b.getSquareArray()[start.getRow()+i][start.getCol()]);
             
-            }
+            
         
         // ret.add(right);
     	return moves;
