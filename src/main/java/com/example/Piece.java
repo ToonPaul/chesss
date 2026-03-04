@@ -74,11 +74,50 @@ public class Piece {
                 //check for in bounds first
                 if(start.getCol()+1 < 8){
                     for(int row = start.getRow()+1; row < 8; row++){
-                        moves.add(b.getSquareArray()[row][start.getCol()+1]);
+                        Square right = b.getSquareArray()[row][start.getCol()+1];
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                            moves.add(right);
+                        }
+                        if(right.isOccupied()){
+                            break;
+                        }
+                        
                     }
                     for(int row = start.getRow()-1;row >= 0; row--){
-                        moves.add(b.getSquareArray()[row][start.getCol()+1]);
+                       Square right = b.getSquareArray()[row][start.getCol()+1];
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                            moves.add(right);
+                        }
+                        if(right.isOccupied()){
+                            break;
+                        }
                     }
+                    
+                }
+
+
+
+                 if(start.getCol()-1 >= 0){
+                    for(int row = start.getRow()+1; row < 8; row++){
+                        Square right = b.getSquareArray()[row][start.getCol()-1];
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                            moves.add(right);
+                        }
+                        if(right.isOccupied()){
+                            break;
+                        }
+                        
+                    }
+                    for(int row = start.getRow()-1;row >= 0; row--){
+                       Square right = b.getSquareArray()[row][start.getCol()-1];
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                            moves.add(right);
+                        }
+                        if(right.isOccupied()){
+                            break;
+                        }
+                    }
+                    
                 }
                 
                 // if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
