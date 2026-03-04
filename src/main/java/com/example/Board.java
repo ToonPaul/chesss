@@ -144,6 +144,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     @Override
+    //precondition: the user's mouse is held down over a piece
+    //postcondition: the user's mouse is released
     public void mousePressed(MouseEvent e) {
         currX = e.getX();
         currY = e.getY();
@@ -171,6 +173,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     // use the pieces "legal move" function to determine if this move is legal, then
     // complete it by
     // moving the new piece to it's new board location.
+    //precondition: the user must release the mouse
+    //postcondition: the mouse is not held, the piece either moves a space, or snaps back to where it started
     @Override
     public void mouseReleased(MouseEvent e) {
         Square endSquare = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
