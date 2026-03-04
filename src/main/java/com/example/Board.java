@@ -157,7 +157,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 s.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
             }
             for(Square s: currPiece.getControlledSquares(board, fromMoveSquare)){
-                s.setBorder(BorderFactory.createLineBorder(Color.RED));
+                s.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
             }
             if (currPiece.getColor() != whiteTurn)
                 return;

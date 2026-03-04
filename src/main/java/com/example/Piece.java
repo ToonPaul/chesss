@@ -55,7 +55,7 @@ public class Piece {
             // add the space in front of us to the capture list
             captures.add(board[start.getRow()+1][start.getCol()]);
         }
-        if(start.getRow()-1 > 0){
+        if(start.getRow()-1 >= 0){
             //add the space behind us to the capture list
             captures.add(board[start.getRow()-1][start.getCol()]);
         }
@@ -63,7 +63,7 @@ public class Piece {
             //add the space to the right of us to the capture list
             captures.add(board[start.getRow()][start.getCol()+1]);
         }
-        if(start.getCol()-1 > 0){
+        if(start.getCol()-1 >= 0){
             //add the space to the left of us to the capture list
             captures.add(board[start.getRow()][start.getCol()-1]);
         }
