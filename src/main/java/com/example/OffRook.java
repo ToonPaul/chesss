@@ -12,10 +12,11 @@ import javax.imageio.ImageIO;
 
 //you will need to implement two functions in this file.
 public class OffRook extends Piece{
-
+    private final boolean color;
+    private BufferedImage img;
     
     public OffRook(boolean isWhite, String img_file) {
-        super.color = isWhite;
+        this.color = isWhite;
          
         try {
             if (this.img == null) {
