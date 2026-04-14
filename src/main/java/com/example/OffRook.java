@@ -24,6 +24,10 @@ public class OffRook extends Piece{
     public Image getImage() {
         return super.getImage();
     }
+
+    public String toString(){
+        return "A " + super.getColor() + " OffRook";
+    }
     
     public void draw(Graphics g, Square currentSquare) {
         int x = currentSquare.getX();
