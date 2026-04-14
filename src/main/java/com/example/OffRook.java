@@ -16,7 +16,7 @@ public class OffRook extends Piece{
     private BufferedImage img;
     
     public OffRook(boolean isWhite, String img_file) {
-        this.color = isWhite;
+        super();
          
         try {
             if (this.img == null) {
