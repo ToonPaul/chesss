@@ -1,48 +1,35 @@
 package com.example;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+// import java.awt.image.BufferedImage;
+// import java.io.File;
+// import java.io.IOException;
 import java.util.ArrayList;
 // import java.util.LinkedList;
 // import java.util.List;
 
-import javax.imageio.ImageIO;
+// import javax.imageio.ImageIO;
 
 //you will need to implement two functions in this file.
 public class OffRook extends Piece{
-    private final boolean color;
-    private BufferedImage img;
     
     public OffRook(boolean isWhite, String img_file) {
-        super();
-         
-        try {
-            if (this.img == null) {
-                this.img = ImageIO.read(new File(System.getProperty("user.dir")+img_file));
-            }
-          } catch (IOException e) {
-            System.out.println("File not found: " + e.getMessage());
-          }
+        super(isWhite, img_file);
     }
     
-    
-
-    
     public boolean getColor() {
-        return color;
+        return super.getColor();
     }
     
     public Image getImage() {
-        return img;
+        return super.getImage();
     }
     
     public void draw(Graphics g, Square currentSquare) {
         int x = currentSquare.getX();
         int y = currentSquare.getY();
         
-        g.drawImage(this.img, x, y, null);
+        g.drawImage(super.getImage(), x, y, null);
     }
     
     
@@ -88,7 +75,7 @@ public class OffRook extends Piece{
                 if(start.getCol()+1 < 8){
                     for(int row = start.getRow()+1; row < 8; row++){
                         Square right = b.getSquareArray()[row][start.getCol()+1];
-                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= super.getColor()){
                             moves.add(right);
                         }
                         if(right.isOccupied()){
@@ -98,7 +85,7 @@ public class OffRook extends Piece{
                     }
                     for(int row = start.getRow()-1;row >= 0; row--){
                        Square right = b.getSquareArray()[row][start.getCol()+1];
-                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= super.getColor()){
                             moves.add(right);
                         }
                         if(right.isOccupied()){
@@ -111,7 +98,7 @@ public class OffRook extends Piece{
                  if(start.getCol()-1 >= 0){
                     for(int row = start.getRow()+1; row < 8; row++){
                         Square right = b.getSquareArray()[row][start.getCol()-1];
-                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= super.getColor()){
                             moves.add(right);
                         }
                         if(right.isOccupied()){
@@ -121,7 +108,7 @@ public class OffRook extends Piece{
                     }
                     for(int row = start.getRow()-1;row >= 0; row--){
                        Square right = b.getSquareArray()[row][start.getCol()-1];
-                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= color){
+                         if(!right.isOccupied() || right.getOccupyingPiece().getColor()!= super.getColor()){
                             moves.add(right);
                         }
                         if(right.isOccupied()){
