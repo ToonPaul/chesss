@@ -35,6 +35,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     private static final String RESOURCES_WQUEEN_PNG = path + "wqueen.png";
     private static final String RESOURCES_WPAWN_PNG = path + "wpawn.png";
     private static final String RESOURCES_BPAWN_PNG = path + "bpawn.png";
+    private static final String RESOURCES_WCAT_PNG = path + "whiteCat.png";
+    private static final String RESOURCES_BCAT_PNG = path + "blackCat.png";
 
     // Logical and graphical representations of board
     private final Square[][] board;
@@ -91,7 +93,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     // it's up to you how you wish to arrange your pieces.
     void initializePieces() {
 
-         board[0][0].put(new OffRook(true, RESOURCES_WKING_PNG));
+         board[0][0].put(new Cat(true, RESOURCES_WCAT_PNG));
 
     }
 

@@ -1,3 +1,9 @@
+/*This is a custom piece that I have named "Cat." The way it moves is similar to a rook, but offset by one row. It cannot move directly up or down, but can move any number 
+ of spaces vertically in the row to the left or right of it. It can only move one row horizontally at a time. The piece controls the spaces directly in front of, behind, to
+ the right of, or to the left of its current position
+   */
+
+
 package com.example;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,9 +17,9 @@ import java.util.ArrayList;
 // import javax.imageio.ImageIO;
 
 //you will need to implement two functions in this file.
-public class OffRook extends Piece{
+public class Cat extends Piece{
     
-    public OffRook(boolean isWhite, String img_file) {
+    public Cat(boolean isWhite, String img_file) {
         super(isWhite, img_file);
     }
     
