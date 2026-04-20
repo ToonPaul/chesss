@@ -32,7 +32,7 @@ public class Cat extends Piece{
     }
 
     public String toString(){
-        return "A " + super.getColor() + " OffRook";
+        return "A " + super.getColor() + " Cat";
     }
     
     public void draw(Graphics g, Square currentSquare) {
@@ -132,3 +132,13 @@ public class Cat extends Piece{
 }
 // post condition: 
 }
+
+
+/*
+isInCheck Function:
+1) Find every Opponent piece
+2) Make an arrayList of your opponent's pieces by looping through all the squares on the board
+3) Get ALL controlled squares from your opponent's pieces
+4) Find King (by looping through every piece)
+    [variable].instanceOf.{class name} (returns true or false)
+*/
