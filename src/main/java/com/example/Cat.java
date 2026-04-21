@@ -53,25 +53,25 @@ public class Cat extends Piece{
         ArrayList<Square> captures = new ArrayList<Square>();
         if(start.getRow()+1 < 8){
             // add the space in front of us to the capture list
-            if(board[start.getRow()+1][start.getCol()].isOccupied() && board[start.getRow()+1][start.getCol()].getColor() != super.getColor()){
+            if(board[start.getRow()+1][start.getCol()].isOccupied()){
                 captures.add(board[start.getRow()+1][start.getCol()]);
             }
         }
         if(start.getRow()-1 >= 0){
             //add the space behind us to the capture list
-            if(board[start.getRow()-1][start.getCol()].isOccupied() && board[start.getRow()-1][start.getCol()].getColor() != super.getColor()){
+            if(board[start.getRow()-1][start.getCol()].isOccupied()){
                 captures.add(board[start.getRow()-1][start.getCol()]);
             }
         }
         if(start.getCol()+1 < 8){
             //add the space to the right of us to the capture list
-            if(board[start.getRow()][start.getCol()+1].isOccupied() && board[start.getRow()+1][start.getCol()+1].getColor() != super.getColor()){
+            if(board[start.getRow()][start.getCol()+1].isOccupied()){
                 captures.add(board[start.getRow()][start.getCol()+1]);
             }
         }
         if(start.getCol()-1 >= 0){
             //add the space to the left of us to the capture list
-            if(board[start.getRow()][start.getCol()-1].isOccupied() && board[start.getRow()][start.getCol()-1].getColor() != super.getColor()){
+            if(board[start.getRow()][start.getCol()-1].isOccupied()){
                 captures.add(board[start.getRow()][start.getCol()-1]);
             }
         }
@@ -136,6 +136,7 @@ public class Cat extends Piece{
                     
                 }
         
+                moves.addAll(getControlledSquares(b.getSquareArray(), start));
     	return moves;
 }
 // post condition: 
