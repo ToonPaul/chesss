@@ -172,17 +172,31 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         repaint();
     }
 
+    /*
+     * isInCheck Function:
+     * 1) Find every Opponent piece
+     * 2) Make an arrayList of your opponent's pieces by looping through all the
+     * squares on the board
+     * 3) Get ALL controlled squares from your opponent's pieces
+     * 4) Find King (by looping through every piece)
+     * [variable].instanceOf.{class name} (returns true or false)
+     */
     public boolean isInCheck(Board b) {
-        // ArrayList<Square> opponentSpaces = new ArrayList<Square>();
-        // for(int row = 0; row < 8; row++){
-        // for(int col = 0; col < 8; col++){
-        // Square currSquare = b.getSquareArray()[row][col];
-        // if(currSquare.isOccupied() && currSquare.getColor() != super.getColor()){
-        // opponentSpaces.add(currSquare);
-        // }
-        // }
-        // }
-        return true;
+        ArrayList<Square> opponentSpaces = new ArrayList<Square>();
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                Square currSquare = b.getSquareArray()[row][col];
+                if (currSquare.isOccupied() && currSquare.getColor() != whiteTurn){
+                    opponentSpaces.add(currSquare);
+                }
+            }
+        }
+        if(opponentSpaces.size() > 0){
+            return true;
+        } else{
+            return false;
+        }
+        
     }
 
     // TO BE IMPLEMENTED!
