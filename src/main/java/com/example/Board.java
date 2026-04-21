@@ -1,4 +1,5 @@
 package com.example;
+
 //example
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +14,7 @@ import java.awt.event.MouseMotionListener;
 // import java.util.LinkedList;
 // import java.util.List;
 import java.net.URL;
+import java.util.ArrayList;
 import java.awt.Toolkit;
 
 import javax.swing.*;
@@ -65,7 +67,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         boolean cSwitch = true;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = new Square(this, cSwitch, i,j);
+                board[i][j] = new Square(this, cSwitch, i, j);
                 this.add(board[i][j]);
                 cSwitch = !cSwitch;
             }
@@ -93,7 +95,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     // it's up to you how you wish to arrange your pieces.
     void initializePieces() {
 
-         board[0][0].put(new Cat(true, RESOURCES_WCAT_PNG));
+        board[0][0].put(new Cat(true, RESOURCES_WCAT_PNG));
 
     }
 
@@ -124,7 +126,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         if (imageUrl != null) {
             // This is the cleanest way to get an AWT Image object from a URL
             backgroundImage = Toolkit.getDefaultToolkit().createImage(imageUrl);
-        } 
+        }
 
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
@@ -146,8 +148,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     @Override
-    //precondition: the user's mouse is held down over a piece
-    //postcondition: the user's mouse is released
+    // precondition: the user's mouse is held down over a piece
+    // postcondition: the user's mouse is released
     public void mousePressed(MouseEvent e) {
         currX = e.getX();
         currY = e.getY();
@@ -157,10 +159,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         if (sq.isOccupied()) {
             currPiece = sq.getOccupyingPiece();
             fromMoveSquare = sq;
-            for(Square s: currPiece.getLegalMoves(this, fromMoveSquare)){
+            for (Square s : currPiece.getLegalMoves(this, fromMoveSquare)) {
                 s.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
             }
-            for(Square s: currPiece.getControlledSquares(board, fromMoveSquare)){
+            for (Square s : currPiece.getControlledSquares(board, fromMoveSquare)) {
                 s.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
             }
             if (currPiece.getColor() != whiteTurn)
@@ -170,31 +172,52 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         repaint();
     }
 
+    public boolean isInCheck(Board b) {
+        // ArrayList<Square> opponentSpaces = new ArrayList<Square>();
+        // for(int row = 0; row < 8; row++){
+        // for(int col = 0; col < 8; col++){
+        // Square currSquare = b.getSquareArray()[row][col];
+        // if(currSquare.isOccupied() && currSquare.getColor() != super.getColor()){
+        // opponentSpaces.add(currSquare);
+        // }
+        // }
+        // }
+        return true;
+    }
+
     // TO BE IMPLEMENTED!
     // should move the piece to the desired location only if this is a legal move.
     // use the pieces "legal move" function to determine if this move is legal, then
     // complete it by
     // moving the new piece to it's new board location.
-    //precondition: the user must release the mouse
-    //postcondition: the mouse is not held, the piece either moves a space, or snaps back to where it started
+    // precondition: the user must release the mouse
+    // postcondition: the mouse is not held, the piece either moves a space, or
+    // snaps back to where it started
     @Override
     public void mouseReleased(MouseEvent e) {
         Square endSquare = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
 
         // using currPiece
-        if(fromMoveSquare != null){
-            if((currPiece != null) && (currPiece.getLegalMoves(this, fromMoveSquare).contains(endSquare))){
+        if (fromMoveSquare != null) {
+            if ((currPiece != null) && (currPiece.getLegalMoves(this, fromMoveSquare).contains(endSquare))) {
+                Piece p = endSquare.getOccupyingPiece();
                 endSquare.put(currPiece);
                 fromMoveSquare.removePiece();
+                if (isInCheck(whiteTurn)) {
+                    fromMoveSquare.put(currPiece);
+                    endSquare.put(p);
+                } else {
+                    whiteTurn = !whiteTurn;
+                }
             }
             fromMoveSquare.setDisplay(true);
         }
-        for(Square[] row: board){
-            for(Square s: row){
-            s.setBorder(null);
+        for (Square[] row : board) {
+            for (Square s : row) {
+                s.setBorder(null);
             }
         }
-        
+
         currPiece = null;
         repaint();
     }

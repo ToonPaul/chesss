@@ -135,22 +135,11 @@ public class Cat extends Piece{
                     }
                     
                 }
-                
+        
     	return moves;
 }
 // post condition: 
 
-public ArrayList<Square> isInCheck (Board b){
-    ArrayList<Square> opponentSpaces = new ArrayList<Square>();
-    for(int row = 0; row < 8; row++){
-        for(int col = 0; col < 8; col++){
-            Square currSquare = b.getSquareArray()[row][col];
-            if(currSquare.isOccupied() && currSquare.getColor() != super.getColor()){
-                opponentSpaces.add(currSquare);
-            }
-        }
-    }
-}
 }
 
 
