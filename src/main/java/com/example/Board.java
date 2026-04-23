@@ -29,12 +29,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     private static final String RESOURCES_BBISHOP_PNG = path + "bbishop.png";
     private static final String RESOURCES_WKNIGHT_PNG = path + "wknight.png";
     private static final String RESOURCES_BKNIGHT_PNG = path + "bknight.png";
-    private static final String RESOURCES_WROOK_PNG = path + "wrook.png";
-    private static final String RESOURCES_BROOK_PNG = path + "brook.png";
+    // private static final String RESOURCES_WROOK_PNG = path + "wrook.png";
+    // private static final String RESOURCES_BROOK_PNG = path + "brook.png";
     private static final String RESOURCES_WKING_PNG = path + "wking.png";
     private static final String RESOURCES_BKING_PNG = path + "bking.png";
-    private static final String RESOURCES_BQUEEN_PNG = path + "bqueen.png";
-    private static final String RESOURCES_WQUEEN_PNG = path + "wqueen.png";
+    // private static final String RESOURCES_BQUEEN_PNG = path + "bqueen.png";
+    // private static final String RESOURCES_WQUEEN_PNG = path + "wqueen.png";
     private static final String RESOURCES_WPAWN_PNG = path + "wpawn.png";
     private static final String RESOURCES_BPAWN_PNG = path + "bpawn.png";
     private static final String RESOURCES_WCAT_PNG = path + "whiteCat.png";
@@ -207,17 +207,20 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
      */
     public boolean isInCheck(boolean kingColor) {
         ArrayList<Square> opponentSpaces = new ArrayList<Square>();
-        for(int row = 0; row < 8; row++){
-            for(int col = 0; col < 8; col++){
-                Square currSquare = this.getSquareArray()[row][col];
-                if(currSquare.isOccupied()){
+        int row = 0;
+        int col = 0;
+        Square currSquare = this.getSquareArray()[row][col];
+        for(row = 0; row < 8; row++){
+            for(col = 0; col < 8; col++){
+                
+                if(currSquare.isOccupied() && (currSquare.getColor() != kingColor)){
                     opponentSpaces.add(currSquare);
                 }
             }
         }
         
-        return false;
-        
+
+        return false;       
         // if(Piece.instanceOf(King)){
         //     return true;
         // }
