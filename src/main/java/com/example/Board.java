@@ -218,7 +218,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 }
             }
         }
-        
+        // for(int i = 0; i < opponentSpaces.size(); i++){
+        //     if(){
+        //         return true;
+        //     }
+        // }
 
         return false;       
         // if(Piece.instanceOf(King)){
