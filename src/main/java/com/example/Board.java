@@ -39,6 +39,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     private static final String RESOURCES_BPAWN_PNG = path + "bpawn.png";
     private static final String RESOURCES_WCAT_PNG = path + "whiteCat.png";
     private static final String RESOURCES_BCAT_PNG = path + "blackCat.png";
+    private static final String RESOURCES_BAMA_PNG = path + "blackAmazon.png";
+    private static final String RESOURCES_WAMA_PNG = path + "whiteAmazon.png";
 
     // Logical and graphical representations of board
     private final Square[][] board;
@@ -94,8 +96,30 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     // number of pieces on either side.
     // it's up to you how you wish to arrange your pieces.
     void initializePieces() {
-
+        //White back pieces
         board[0][0].put(new Cat(true, RESOURCES_WCAT_PNG));
+        board[0][1].put(new Snake(true, RESOURCES_WKNIGHT_PNG));
+        board[0][2].put(new Bishop(true, RESOURCES_WBISHOP_PNG));
+        board[0][3].put(new Amazon(true, RESOURCES_WAMA_PNG));
+        board[0][4].put(new King(true, RESOURCES_WKING_PNG));
+        board[0][5].put(new Bishop(true, RESOURCES_WBISHOP_PNG));
+        board[0][6].put(new Snake(true, RESOURCES_WKNIGHT_PNG));
+        board[0][7].put(new Cat(true, RESOURCES_WCAT_PNG));
+        //Black Back Pieces
+        board[7][0].put(new Cat(false, RESOURCES_BCAT_PNG));
+        board[7][1].put(new Snake(false, RESOURCES_BKNIGHT_PNG));
+        board[7][2].put(new Bishop(false, RESOURCES_BBISHOP_PNG));
+        board[7][3].put(new Amazon(false, RESOURCES_BAMA_PNG));
+        board[7][4].put(new King(false, RESOURCES_BKING_PNG));
+        board[7][5].put(new Bishop(false, RESOURCES_BBISHOP_PNG));
+        board[7][6].put(new Snake(false, RESOURCES_BKNIGHT_PNG));
+        board[7][7].put(new Cat(false, RESOURCES_BCAT_PNG));
+        for(int row = 0; row < 8; row++){
+            board[1][row].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        }
+        for(int row = 0; row < 8; row++){
+            board[6][row].put(new Pawn(true, RESOURCES_BPAWN_PNG));
+        }
 
     }
 
@@ -181,22 +205,14 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
      * 4) Find King (by looping through every piece)
      * [variable].instanceOf.{class name} (returns true or false)
      */
-    public boolean isInCheck(Board b) {
-        ArrayList<Square> opponentSpaces = new ArrayList<Square>();
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                Square currSquare = b.getSquareArray()[row][col];
-                if (currSquare.isOccupied() && currSquare.getColor() != whiteTurn){
-                    opponentSpaces.add(currSquare);
-                }
-            }
-        }
-        if(opponentSpaces.size() > 0){
-            return true;
-        } else{
-            return false;
-        }
+    public boolean isInCheck(boolean kingColor) {
+        return false;
+        // ArrayList<Square> opponentSpaces = new ArrayList<Square>();
         
+        // if(Piece.instanceOf(King)){
+        //     return true;
+        // }
+        // return false;
     }
 
     // TO BE IMPLEMENTED!
