@@ -206,29 +206,22 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
      * [variable].instanceOf.{class name} (returns true or false)
      */
     public boolean isInCheck(boolean kingColor) {
-        ArrayList<Square> opponentSpaces = new ArrayList<Square>();
+        // ArrayList<Square> opponentSpaces = new ArrayList<Square>();
         int row = 0;
         int col = 0;
         Square currSquare = this.getSquareArray()[row][col];
         for(row = 0; row < 8; row++){
             for(col = 0; col < 8; col++){
-                
-                if(currSquare.isOccupied() && (currSquare.getColor() != kingColor)){
-                    opponentSpaces.add(currSquare);
+                if(currSquare.isOccupied() && (currSquare.getOccupyingPiece().getColor() != kingColor)){
+                    for(Square controlled: currSquare.getOccupyingPiece().getControlledSquares(board, currSquare)){
+                        if(controlled.getOccupyingPiece() instanceof King){
+                            return true;
+                        }
+                    }
                 }
             }
         }
-        // for(int i = 0; i < opponentSpaces.size(); i++){
-        //     if(){
-        //         return true;
-        //     }
-        // }
-
         return false;       
-        // if(Piece.instanceOf(King)){
-        //     return true;
-        // }
-        // return false;
     }
 
     // TO BE IMPLEMENTED!
